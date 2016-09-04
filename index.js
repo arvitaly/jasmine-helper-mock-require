@@ -1,26 +1,32 @@
 var Module = require('module'),
     fullpath = require('./fullpath'),
-    callerId = require('caller-id');
+    callerId = require('caller-id'),
+    Path = require('path');
 var mock = {
     require: function (path, mocks) {
         var originalLoader = Module._load;
         var realMocks = {};
-        var calledFrom = callerId.getData().filePath;
+        var calledFrom = Path.dirname(callerId.getData().filePath);
         var realPath = fullpath(path, calledFrom);
+        var realPathDir = Path.dirname(realPath);
         if (mocks) {
             for (var p in mocks) {
                 realMocks[fullpath(p, calledFrom)] = mocks[p];
             }
         }
-        Module._load = function (request) {
-            if (request === realPath) {
+        Module._load = function (requirePath) {
+            if (requirePath === realPath) {
+                var newModule = Object.assign({}, Module.prototype);
+                newModule.require = function (requirePath) {                    
+                    var realRequest = fullpath(requirePath, realPathDir);
+                    if (realMocks[realRequest]) {
+                        return realMocks[realRequest];
+                    } else {
+                        return;
+                    }
+                }
+                Module.prototype = newModule;
                 return originalLoader.apply(this, arguments);
-            }
-            var realRequest = fullpath(request, calledFrom);
-            if (realMocks[realRequest]) {
-                return realMocks[realRequest];
-            } else {
-                return;
             }
         }
         var result = require(realPath);

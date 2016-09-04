@@ -1,6 +1,6 @@
 {
   "name": "mock2",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Module for testing node modules, which mocking all submodules",
   "main": "index.js",
   "scripts": {
