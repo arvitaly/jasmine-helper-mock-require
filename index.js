@@ -14,20 +14,18 @@ var mock = {
                 realMocks[fullpath(p, calledFrom)] = mocks[p];
             }
         }
-        Module._load = function (requirePath) {
-            if (requirePath === realPath) {
-                var newModule = Object.assign({}, Module.prototype);
-                newModule.require = function (requirePath) {                    
-                    var realRequest = fullpath(requirePath, realPathDir);
-                    if (realMocks[realRequest]) {
-                        return realMocks[realRequest];
-                    } else {
-                        return;
-                    }
+        Module._load = function () {
+            var newModule = Object.assign({}, Module.prototype);
+            newModule.require = function (requirePath) {
+                var realRequest = fullpath(requirePath, realPathDir);
+                if (realMocks[realRequest]) {
+                    return realMocks[realRequest];
+                } else {
+                    return;
                 }
-                Module.prototype = newModule;
-                return originalLoader.apply(this, arguments);
             }
+            Module.prototype = newModule;
+            return originalLoader.apply(this, arguments);
         }
         var result = require(realPath);
         delete require.cache[realPath];
