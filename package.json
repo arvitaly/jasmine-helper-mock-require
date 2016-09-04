@@ -1,7 +1,7 @@
 {
   "name": "mock2",
   "version": "0.0.3",
-  "description": "Module for testing node modules, which mocking all submodules",
+  "description": "Tool for testing, which mocking all calls of require inside module locally",
   "main": "index.js",
   "scripts": {
     "test": "istanbul cover node_modules/jasmine/bin/jasmine.js",
