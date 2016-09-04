@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/arvitaly/mock2.svg?branch=master)](https://travis-ci.org/arvitaly/mock2)
 [![Coverage Status](https://coveralls.io/repos/github/arvitaly/mock2/badge.svg?branch=master)](https://coveralls.io/github/arvitaly/mock2?branch=master)
 
-Module for testing node modules, which mocking all submodules without change global module (local mock.require). Mock2 mocking `require` for `module` object, so it works every time when you call require (lazy), not only for first load.
+Module for testing node modules, which mocking any submodules without change global require (local mock.require). Mock2 mocking `require` for `module` object, so it works every time when you call require (lazy), not only for first load.
 
 #Install
 
@@ -20,10 +20,15 @@ Module for testing node modules, which mocking all submodules without change glo
     });
     expect(module1.module2()).toBe(fixture1);
     expect(module1.fs).toBe(fixture2);
+    //real require
+    expect(module3).toBe("module3");
     
     //module1.js
     module.exports = {
         //Also mocked
         module2: () => { return require('./module2') },
-        fs: require('fs')        
+        fs: require('fs'),
+        module3: require('./module3')    
     }
+    //module3.js
+    module.exports = 'module3';

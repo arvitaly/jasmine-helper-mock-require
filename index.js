@@ -16,12 +16,13 @@ var mock = {
         }
         Module._load = function () {
             var newModule = Object.assign({}, Module.prototype);
+            newModule.realRequire = newModule.require; 
             newModule.require = function (requirePath) {
                 var realRequest = fullpath(requirePath, realPathDir);
                 if (realMocks[realRequest]) {
                     return realMocks[realRequest];
                 } else {
-                    return;
+                    return newModule.realRequire(realRequest);
                 }
             }
             Module.prototype = newModule;

@@ -2,8 +2,8 @@ var mock = require('./../index');
 var fixture1 = "fix1";
 var fixture2 = "fix2";
 describe("Mock require module", () => {
-    it("when sub-module not setted, require should return undefined", () => {
-        expect(mock.require('./module1').module2()).toBeUndefined();
+    it("when sub-module not setted, require should return real module", () => {
+        expect(mock.require('./module1').module2()).toEqual(require('./module2'));
     })
     it("when sub-module setted, require should return mock-object", () => {
         var module1 = mock.require('./module1', {
@@ -18,6 +18,7 @@ describe("Mock require module", () => {
             './module2': fixture1
         });
         expect(module1.module2).toBe(fixture1);
+        expect(module1.module4).toBe("module4");
     })
     it("when sub-module has absolute path, require should resolved truthy", () => {
         var absolutePath = require.resolve('./module1');
