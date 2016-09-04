@@ -27,4 +27,10 @@ describe("Mock require module", () => {
         var module1 = mock.require('./module5', modules);
         expect(module1(absolutePath).absModule).toBe(fixture1);
     })
+    it("when module not resolved, should use path as is", () => {
+        var module1 = mock.require('./module6', {
+            './module7': fixture1
+        });
+        expect(module1.module7).toBe(fixture1);
+    })
 })

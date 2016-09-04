@@ -7,7 +7,7 @@ module.exports = (modulePath, basePath, npmPath) => {
         fullpath = modulePath;
     } else {
         //Local module with relative path
-        if (modulePath.substr(0, 2) === "./") {            
+        if (modulePath.substr(0, 2) === "./") {
             fullpath = path.resolve(path.join(basePath, modulePath));
         } else {
             //npm extern module            
@@ -20,5 +20,9 @@ module.exports = (modulePath, basePath, npmPath) => {
             }
         }
     }
-    return require.resolve(fullpath);
+    try {
+        return require.resolve(fullpath);
+    } catch (e) {
+        return fullpath;
+    }
 }
