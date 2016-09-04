@@ -1,0 +1,32 @@
+{
+  "name": "mock2",
+  "version": "0.0.2",
+  "description": "Module for testing node modules, which mocking all submodules",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover node_modules/jasmine/bin/jasmine.js",
+    "watch:test": "nodemon --exec \"npm test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvitaly/mock2.git"
+  },
+  "keywords": [
+    "mock",
+    "module"
+  ],
+  "author": "arvitaly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arvitaly/mock2/issues"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.12",
+    "istanbul": "^0.4.5",
+    "jasmine": "2.4.1"
+  },
+  "homepage": "https://github.com/arvitaly/mock2#readme",
+  "dependencies": {
+    "caller-id": "^0.1.0"
+  }
+}
