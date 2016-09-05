@@ -27,6 +27,6 @@
   },
   "homepage": "https://github.com/arvitaly/mock2#readme",
   "dependencies": {
-    "caller-id": "^0.1.0"
+    "resolve-module-path": "0.0.2"
   }
 }
