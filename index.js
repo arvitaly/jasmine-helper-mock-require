@@ -5,7 +5,6 @@ var mock = {
     require: function (path, mocks) {
         var originalLoader = Module._load;
         var realMocks = {};
-        //var calledFrom = Path.dirname(callerId.getData().filePath);
         var realPath = resolve(path, {
             stackDepth: 1
         });
@@ -17,25 +16,30 @@ var mock = {
                 })] = mocks[p];
             }
         }
+        var originalModulePrototype = Module.prototype;
         Module._load = function () {
             var newModule = Object.assign({}, Module.prototype);
             newModule.realRequire = newModule.require;
             newModule.require = function (requirePath) {
+                if (Module.prototype.isMockedPrototype) {
+                    Module.prototype = originalModulePrototype;
+                    Module._load = originalLoader;
+                }
                 var realRequest = resolve(requirePath, {
                     basePath: realPathDir
                 });
                 if (realMocks[realRequest]) {
                     return realMocks[realRequest];
                 } else {
-                    return newModule.realRequire(realRequest);
+                    return require(realRequest);
                 }
             }
+            newModule.isMockedPrototype = true;
             Module.prototype = newModule;
             return originalLoader.apply(this, arguments);
         }
         var result = require(realPath);
         delete require.cache[realPath];
-        Module._load = originalLoader;
         return result;
     }
 }

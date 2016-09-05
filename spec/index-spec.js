@@ -33,4 +33,9 @@ describe("Mock require module", () => {
         });
         expect(module1.module7).toBe(fixture1);
     })
+    it("when module real require, module in sub-module should be not-mocked", () => {
+        expect(mock.require('./module8', {
+            './module10': "mockmodule10"
+        })).toEqual({ module9: "realmodule10", module10: "mockmodule10" });
+    })
 })
