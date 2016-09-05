@@ -1,6 +1,6 @@
 {
   "name": "mock2",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Tool for testing, which mocking all calls of require inside module locally",
   "main": "index.js",
   "scripts": {
