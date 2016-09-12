@@ -38,12 +38,25 @@ describe("Mock require module", () => {
             './module10': "mockmodule10"
         })).toEqual({ module9: "realmodule10", module10: "mockmodule10" });
     })
-    it("install promise", () => {
+    it("install promise sync", () => {
         var mockPromise = require('sync-promise');
         var realPromise = Promise;
         mock.installSyncPromise();
         expect(Promise).toBe(mockPromise);
         mock.uninstallSyncPromise();
         expect(Promise).toBe(realPromise);
+    })
+    it("install fs sync", () => {
+        mock.installSyncFS();
+        var callback = jasmine.createSpy();
+        require('fs').readFile(__dirname + "/test1.txt", {}, callback);
+        expect(callback.calls.allArgs()).toEqual([[null, new Buffer("fix11")]]);
+        callback.calls.reset();
+        require('fs').readFile(__dirname + "/test1sgfg.txt", {}, callback);
+        expect(callback.calls.allArgs()).toEqual([[jasmine.any(Error)]]);
+        mock.uninstallSyncFS();
+        callback.calls.reset();
+        require('fs').readFile(__dirname + "/test1.txt", {}, callback);
+        expect(callback.calls.count()).toBe(0);
     })
 })
