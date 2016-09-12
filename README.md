@@ -5,6 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/arvitaly/mock2/badge.svg?branch=master)](https://coveralls.io/github/arvitaly/mock2?branch=master)
 
 Module for testing node modules, which mocking any submodules without change global require (local mock.require). Mock2 mocking `require` for `module` object, so it works every time when you call require (lazy), not only for first load.
+Also, includes installSyncPromise and uninstallSyncPromise, which make all promises sync.
 
 #Install
 

@@ -38,4 +38,12 @@ describe("Mock require module", () => {
             './module10': "mockmodule10"
         })).toEqual({ module9: "realmodule10", module10: "mockmodule10" });
     })
+    it("install promise", () => {
+        var mockPromise = require('sync-promise');
+        var realPromise = Promise;
+        mock.installSyncPromise();
+        expect(Promise).toBe(mockPromise);
+        mock.uninstallSyncPromise();
+        expect(Promise).toBe(realPromise);
+    })
 })

@@ -1,7 +1,15 @@
 var Module = require('module'),
     resolve = require('resolve-module-path'),
-    Path = require('path');
+    Path = require('path'),
+    SyncPromise = require('sync-promise');
+var realPromise = global.Promise;
 var mock = {
+    installSyncPromise: function () {
+        Promise = global.Promise = SyncPromise;
+    },
+    uninstallSyncPromise: function () {
+        Promise = global.Promise = realPromise;
+    },
     require: function (path, mocks) {
         var originalLoader = Module._load;
         var realMocks = {};
