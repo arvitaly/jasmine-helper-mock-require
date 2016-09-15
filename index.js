@@ -1,7 +1,7 @@
 var Module = require('module'),
     resolve = require('resolve-module-path'),
     Path = require('path'),
-    SyncPromise = require('sync-promise'),
+    SyncPromise = require('promise-sync-es6'),
     fs = require('fs'),
     realFS = {},
     realPromise = global.Promise;

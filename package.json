@@ -1,6 +1,6 @@
 {
   "name": "mock2",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Tool for testing, which mocking all calls of require inside module locally",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/arvitaly/mock2#readme",
   "dependencies": {
-    "resolve-module-path": "0.0.2",
-    "sync-promise": "^1.0.1"
+    "promise-sync-es6": "^0.1.4",
+    "resolve-module-path": "0.0.2"
   }
 }
