@@ -52,3 +52,5 @@ https://github.com/jhnns/rewire - mocking with read and eval source file, you ca
 
 https://github.com/boblauer/mock-require - global simple mocking
 
+https://github.com/facebook/jest/blob/master/packages/jest-haste-map/src/lib/extractRequires.js - interesting solution from Facebook and Jest. Just read file and replace code with regular expressions!
+
