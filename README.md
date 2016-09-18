@@ -42,7 +42,7 @@ Has installSyncFS and uninstallSyncFS, which transform all async methods from re
 
 https://github.com/bahmutov/really-need - mocking with pre- and post-hooks and run in VM
 
-https://github.com/thlorenz/proxyquire - local mock requiring with other settings. Works with change require.extensions
+https://github.com/thlorenz/proxyquire - local mock requiring with many settings. Works by mock require.extensions
 
 https://github.com/mfncooper/mockery - global mocking
 
