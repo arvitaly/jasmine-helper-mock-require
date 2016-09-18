@@ -37,3 +37,18 @@ Has installSyncFS and uninstallSyncFS, which transform all async methods from re
     }
     //module3.js
     module.exports = 'module3';
+    
+# See also
+
+https://github.com/bahmutov/really-need - mocking with pre- and post-hooks and run in VM
+
+https://github.com/thlorenz/proxyquire - local mock requiring with other settings. Works with change require.extensions
+
+https://github.com/mfncooper/mockery - global mocking
+
+http://bahmutov.calepin.co/hacking-node-require.html - article about module `Module`
+
+https://github.com/jhnns/rewire - mocking with read and eval source file, you can do anything with your code.
+
+https://github.com/boblauer/mock-require - global simple mocking
+
