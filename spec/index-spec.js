@@ -59,4 +59,7 @@ describe("Mock require module", () => {
         require('fs').readFile(__dirname + "/test1.txt", {}, callback);
         expect(callback.calls.count()).toBe(0);
     })
+    it("when use require.resolve inside mocking module, should work right", () => {
+        expect(mock.require('./module13')).toBe(require.resolve('./module15'));
+    })
 })
