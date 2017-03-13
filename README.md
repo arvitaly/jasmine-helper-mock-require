@@ -1,5 +1,7 @@
 # Mock2
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/arvitaly/mock2.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/mock2.svg)](https://badge.fury.io/js/mock2)
 [![Build Status](https://travis-ci.org/arvitaly/mock2.svg?branch=master)](https://travis-ci.org/arvitaly/mock2)
 [![Coverage Status](https://coveralls.io/repos/github/arvitaly/mock2/badge.svg?branch=master)](https://coveralls.io/github/arvitaly/mock2?branch=master)
